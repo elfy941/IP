@@ -36,7 +36,7 @@ export const USERS : IUser[] =  [
         firstName:"Employee",
         lastName:"Employee",
         email:"user@gmail.com",
-        role:"employee",
+        role:"emp",
         password:"user"
     }
 ]

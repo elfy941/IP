@@ -25,6 +25,7 @@ export interface IHotel {
     id:number,
     name:string,
     users:IUser[],
-    rooms:Room[]
+    rooms:Room[],
+    description:string
 
 }

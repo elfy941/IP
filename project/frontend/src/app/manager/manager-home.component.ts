@@ -23,4 +23,8 @@ export class ManagerHomeComponent implements OnInit {
          return this.hotelService.getHotelsForUser(this.auth.currentUser.id)
     }
 
+    getEmployees(){
+        return this.hotelService.getHotelEmployees()
+    }
+
 }

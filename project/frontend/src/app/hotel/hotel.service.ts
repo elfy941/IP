@@ -7,6 +7,9 @@ import {USERS} from '../services/user.service'
 @Injectable()
 export class HotelService {
 
+    /*
+        This method returns all hotels of a Manager
+    */
    getHotelsForUser(id:number){
 
        let myHotels:IHotel[] = []
@@ -21,18 +24,45 @@ export class HotelService {
        return myHotels
    }
 
+   /*
+    This method returna all employees of a hotel
+   */
+   getHotelEmployees(){
+       let myEmp = []
+       for(let hotel of hotels){
+           for(let user of hotel.users){
+               if(user.role === 'emp'){
+                   myEmp.push(user)
+               }
+           }
+       }
+   }
+
+
 }
 
 export const hotels:IHotel[] =[
     {
         id:1,
         name:"Rahova hotel",
+        users:[USERS[1],USERS[2]],
+        rooms:[{
+            id:1,
+            roomNumber:201,
+            available:true
+        }],
+        description:"This is the description of "+name
+    },
+     {
+        id:2,
+        name:"Berceni hotel",
         users:[USERS[1]],
         rooms:[{
             id:1,
             roomNumber:201,
             available:true
-        }]
+        }],
+        description:"This is the description of "+name
     }
 ]
 
