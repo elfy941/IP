@@ -1,0 +1,102 @@
+<div class="container" style="padding-top: 60px;">
+  <h1 class="page-header">Edit Profile</h1>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c9.0.160.160/p160x160/420257_10151474103567424_1224916620_n.jpg?oh=0932a7be9adb74fd949d0211d9128ad7&oe=58BA7A17&__gda__=1488564886_feb0fc02d6307304a3d43aecff5a804a" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
+    </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <h3>Personal info</h3>
+      <form #profile="ngForm" class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="currentUser.firstName" name="firstName" class="form-control"  type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="currentUser.lastName" name="lastName" class="form-control"  type="text">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input [(ngModel)]="currentUser.email" name="email" class="form-control"  type="text">
+          </div>
+        </div>
+       
+       
+       
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input class="btn btn-primary" value="Save Changes" type="button">
+            <span></span>
+            <input class="btn btn-default" (click)="cancel()" value="Cancel" type="reset">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <hr>
+
+ 
+  
+
+  <h2>Employees</h2>
+  <input type="button" class="btn btn-primary" (click)="addEmployee()" value="Add Employee"/>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empl of employees">
+        <td>{{empl.firstName}}</td>
+        <td>{{empl.lastName}}</td>
+        <td>{{empl.email}}</td>
+        <td>{{empl.password}}</td>
+        <td><input type="button" (click)="remove(empl)" class="btn btn-primary" value="Remove"></td>
+      </tr>      
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>Hotels</h2>
+  <input type="button" class="btn btn-primary" (click)="addHotel()" value="Add Hotel"/>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Number of rooms</th>                
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td>{{hotel.name}}</td>
+        <td>{{hotel.nrRooms}}</td>        
+        <td><input type="button" class="btn btn-primary" value="Remove"></td>
+      </tr>      
+    </tbody>
+  </table>
+
+
+
+
+
+
+</div>

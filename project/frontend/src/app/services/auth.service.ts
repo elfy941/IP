@@ -3,16 +3,18 @@ import {Router} from '@angular/router'
 
 import {IUser} from '../shared/model'
 import {UserService} from '../services/user.service'
+import {EmployeeService} from '../employee/employee.service'
 
 
 @Injectable()
 export class AuthService {
 
-    constructor(private userService:UserService,private router:Router){
+    constructor(private userService:UserService,private router:Router,
+        private employeeService:EmployeeService){
 
     }
 
-    currentUser:IUser
+    currentUser:any
 
     getCurrentUser(){
         return this.currentUser
@@ -24,10 +26,20 @@ export class AuthService {
     }
 
     login(username:string,password:string){
+
+        if(this.employeeService.getEmployee(username,password) != null){
+            this.employeeService.manager = this.employeeService.getEmployee(username,password)
+            console.log(this.employeeService.manager);
+            
+            this.router.navigate(['home'])
+        }
+
         if(this.userService.getUser(username,password) != null){
             this.currentUser = this.userService.getUser(username,password)
             this.router.navigate(['home'])
         }
+       
+
         
     }
 
@@ -50,5 +62,9 @@ export class AuthService {
         if(this.isAuthenticated()){
             return this.currentUser.role === 'manager'
         }
+    }
+
+    isEmployee(){
+       return  this.isAuthenticated() && !this.isManager() && !this.isAdmin()                        
     }
 }

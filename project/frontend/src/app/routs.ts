@@ -30,6 +30,10 @@ export const appRoutes:Routes = [
     {
         path:'manager',
         loadChildren:'app/manager/manager.module#ManagerModule'
+    },
+    {
+        path:'emp',
+        loadChildren:'app/employee/employee.module#EmployeeModule'
     }
    
         

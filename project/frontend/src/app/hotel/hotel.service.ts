@@ -1,68 +1,50 @@
 import {Injectable} from '@angular/core'
 
-import {IHotel} from '../shared/model'
+import {IHotel,IUser} from '../shared/model'
 import {UserService} from '../services/user.service'
 import {USERS} from '../services/user.service'
+import {AuthService} from '../services/auth.service'
+
 
 @Injectable()
 export class HotelService {
 
+    
+
     /*
         This method returns all hotels of a Manager
     */
-   getHotelsForUser(id:number){
+  
+   
 
-       let myHotels:IHotel[] = []
-       for(let hotel of hotels){
-           for(let user of hotel.users){
-               if(user.id === id){
-                    myHotels.push(hotel)
-               }
-           }
-       }
 
-       return myHotels
-   }
-
-   /*
-    This method returna all employees of a hotel
-   */
-   getHotelEmployees(){
-       let myEmp = []
-       for(let hotel of hotels){
-           for(let user of hotel.users){
-               if(user.role === 'emp'){
-                   myEmp.push(user)
-               }
-           }
-       }
-   }
+ 
 
 
 }
 
-export const hotels:IHotel[] =[
+export const HOTELS:IHotel[] =[
     {
         id:1,
-        name:"Rahova hotel",
-        users:[USERS[1],USERS[2]],
+        name:"Rahova hotel",       
         rooms:[{
             id:1,
             roomNumber:201,
             available:true
         }],
-        description:"This is the description of "+name
+        description:"This is the description of Rahova Hotel",
+        nrRooms:400
     },
      {
         id:2,
         name:"Berceni hotel",
-        users:[USERS[1]],
         rooms:[{
             id:1,
             roomNumber:201,
             available:true
         }],
-        description:"This is the description of "+name
+        description:"This is the description of Berceni Hotel",
+        nrRooms:400
     }
 ]
 

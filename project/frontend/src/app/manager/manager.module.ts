@@ -7,6 +7,11 @@ import {userRoutes} from '../manager/manager.routes'
 
 import {ManagerHomeComponent} from '../manager/manager-home.component'
 import {HotelService} from '../hotel/hotel.service'
+import {ManagerProfileComponent} from '../manager/manager-profile.component'
+import {AuthService} from '../services/auth.service'
+import {UserService} from '../services/user.service'
+import {CreateEmployeeComponent} from '../manager/create-employee'
+import {EmployeeService} from '../employee/employee.service'
 
 
 @NgModule({
@@ -17,10 +22,13 @@ import {HotelService} from '../hotel/hotel.service'
         ReactiveFormsModule
     ],
     declarations:[
-        ManagerHomeComponent
+        ManagerHomeComponent,
+        ManagerProfileComponent,
+        CreateEmployeeComponent
     ],
     providers:[
-        HotelService
+        HotelService,
+        EmployeeService
     ]
 })
 

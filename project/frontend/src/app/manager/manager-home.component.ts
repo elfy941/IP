@@ -2,6 +2,9 @@ import {Component,OnInit} from '@angular/core'
 
 import {HotelService} from '../hotel/hotel.service'
 import {AuthService} from '../services/auth.service'
+import {IUser,IHotel,IEmployee} from '../shared/model'
+import {UserService} from '../services/user.service'
+
 
 @Component({
     templateUrl:"app/manager/manager-home.component.html"
@@ -9,22 +12,32 @@ import {AuthService} from '../services/auth.service'
 
 export class ManagerHomeComponent implements OnInit {
 
+    employees:IEmployee[] = []
+    hotels:IHotel[] = []
+
         ngOnInit(): void {
             console.log(this.getHotels())
+            
+            console.log(this.employees)
         }
 
 
     constructor(private hotelService:HotelService,
-        private auth:AuthService){
+        private auth:AuthService,
+        private userService:UserService){
+
+            this.employees = this.getEmployees()
+            this.hotels = this.getHotels()
 
     }
-
+    //method returns hotels for current user 
     getHotels(){  
-         return this.hotelService.getHotelsForUser(this.auth.currentUser.id)
+         return this.userService.getHotelsForUser(this.auth.currentUser.id)
     }
 
+    //return employees for current user
     getEmployees(){
-        return this.hotelService.getHotelEmployees()
+        return this.userService.getUserEmployees(this.auth.currentUser.id)
     }
 
 }

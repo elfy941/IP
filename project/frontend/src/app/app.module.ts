@@ -10,6 +10,7 @@ import {RegisterComponent} from './register/register.component'
 import {LoginComponent} from './login/login.component'
 import {AuthService} from './services/auth.service'
 import {UserService} from './services/user.service'
+import {EmployeeService} from './employee/employee.service'
 
 import {appRoutes} from './routs'
 
@@ -29,7 +30,8 @@ import {appRoutes} from './routs'
   bootstrap:    [ AppComponent ],
   providers:[
     AuthService,
-    UserService
+    UserService,
+    EmployeeService
   ]
 })
 export class AppModule {}

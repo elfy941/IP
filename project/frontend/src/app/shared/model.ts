@@ -6,13 +6,23 @@ export interface IUser{
     email:string,
     role:string,
     password:string,
+    hotels:IHotel[],
+    employees:IEmployee[]
 
+}
+
+export interface IEmployee {
+    id:number,
+    firstName:string,
+    lastName:string,
+    email:string,
+    password:string,    
 }
 
 /*
     - cum verific daca o camera a fost eliberata ?
 */
-export interface Room {
+export interface IRoom {
 
     id:number,
     roomNumber:number,
@@ -23,9 +33,9 @@ export interface Room {
 export interface IHotel {
 
     id:number,
-    name:string,
-    users:IUser[],
-    rooms:Room[],
-    description:string
+    name:string,        
+    rooms:IRoom[],
+    description:string,
+    nrRooms:number,
 
 }
