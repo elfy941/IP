@@ -28,19 +28,19 @@ export class AuthService {
     login(username:string,password:string){
 
         if(this.employeeService.getEmployee(username,password) != null){
-            this.employeeService.manager = this.employeeService.getEmployee(username,password)
-            console.log(this.employeeService.manager);
+            //this.employeeService.manager = this.employeeService.getEmployee(username,password)
+            //console.log(this.employeeService.manager);
+            this.currentUser = this.employeeService.getEmployee(username,password)
+            this.employeeService.manager = this.userService.getManagerForEmployee(this.currentUser.id)
             
+            console.log(this.userService.manager)
             this.router.navigate(['home'])
-        }
-
-        if(this.userService.getUser(username,password) != null){
+        } 
+        else if(this.userService.getUser(username,password) != null){
             this.currentUser = this.userService.getUser(username,password)
             this.router.navigate(['home'])
         }
-       
-
-        
+               
     }
 
     logout(){

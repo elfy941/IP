@@ -26,6 +26,7 @@ export interface IRoom {
 
     id:number,
     roomNumber:number,
+    description:string,
     available:boolean,
     
 }

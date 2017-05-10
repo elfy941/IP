@@ -6,11 +6,9 @@ import {USERS} from '../services/user.service'
 
 
 @Injectable()
-export class EmployeeService {
+export class EmployeeService {   
 
-   
-
-    manager:any
+    manager:IUser
 
     addEmployee(empl:IEmployee){        
         EMPLOYEES.push(empl)
@@ -39,19 +37,7 @@ export class EmployeeService {
         }
         return null
     }
-
-    // getManager(){
-    //     for(let user of USERS){
-    //         for(let emp of user.employees){
-    //             if(emp.id === this.auth.currentUser.id){
-    //                 this.manager = user
-    //             }
-    //         }
-    //     }
-    // }
-
-
-
+    
 }
 
 export const EMPLOYEES : IEmployee[] = [

@@ -59,6 +59,20 @@ var UserService = (function () {
             }
         }
     };
+    UserService.prototype.getManagerForEmployee = function (idEmployee) {
+        for (var _i = 0, USERS_5 = exports.USERS; _i < USERS_5.length; _i++) {
+            var user = USERS_5[_i];
+            if (user.employees.length > 0) {
+                for (var _a = 0, _b = user.employees; _a < _b.length; _a++) {
+                    var emp = _b[_a];
+                    if (emp.id === idEmployee) {
+                        this.manager = user;
+                    }
+                }
+            }
+        }
+        return this.manager;
+    };
     return UserService;
 }());
 UserService = __decorate([

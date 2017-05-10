@@ -7,6 +7,12 @@ import {userRoutes} from '../employee/employee.routs'
 import {EmployeeService} from '../employee/employee.service'
 import {EmployeeHomeComponent} from '../employee/employee-home.component'
 import {AuthService} from '../services/auth.service'
+import {HotelComponent} from '../hotel/hotel-component'
+import {HotelService} from '../hotel/hotel.service'
+import {RoomComponent} from '../room/room.component'
+import {RoomListComponent} from '../room/room-list.component'
+import {AddRoomComponent} from '../room/add-room.component'
+
 
 
 @NgModule({
@@ -17,12 +23,15 @@ import {AuthService} from '../services/auth.service'
         ReactiveFormsModule
     ],
     declarations:[
-        EmployeeHomeComponent
+        EmployeeHomeComponent,
+        HotelComponent,
+        RoomComponent,
+        RoomListComponent,
+        AddRoomComponent
     ],
     providers:[       
         EmployeeService,
-        
-        
+        HotelService,        
     ]
 })
 

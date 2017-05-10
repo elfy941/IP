@@ -9,6 +9,8 @@ import {IEmployee} from '../shared/model'
 @Injectable()
 export class UserService {
 
+    manager:IUser
+
     getUser(email:string,password:string):IUser{
         
         let user =  USERS.filter(u => u.email === email )[0];
@@ -55,6 +57,21 @@ export class UserService {
                }
            }
        }
+   }
+
+   getManagerForEmployee(idEmployee:number):IUser{
+       
+       for(let user of USERS){
+           if(user.employees.length > 0){
+               for(let emp of user.employees){
+                   if(emp.id === idEmployee){
+                        this.manager = user
+                   }
+               }
+           }
+       }
+
+       return this.manager
    }
 
    

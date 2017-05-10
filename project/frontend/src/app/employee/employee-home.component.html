@@ -9,7 +9,7 @@
                     <small>Profile</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a [routerLink]="['/home']">Home</a>
+                    <li><a [routerLink]="['/emp/home']">Home</a>
                     </li>
                     <li class="active">About</li>
                 </ol>
@@ -19,7 +19,7 @@
 
         <!-- Intro Content -->        
         <div *ngFor="let hotel of hotels">
-        <div  class="row">
+        <div (click)="goToHotel(hotel.id)" class="row">
             <div class="col-md-6">
                 <img class="img-responsive" src="http://placehold.it/750x450" alt="">
             </div>

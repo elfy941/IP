@@ -9,6 +9,30 @@ var core_1 = require("@angular/core");
 var HotelService = (function () {
     function HotelService() {
     }
+    HotelService.prototype.setCurrentHotel = function (hotel) {
+        this.currentHotel = hotel;
+    };
+    HotelService.prototype.getHotel = function (id) {
+        return exports.HOTELS.find(function (hotel) { return hotel.id === id; });
+    };
+    HotelService.prototype.addRoomToHotel = function (idHotel, room) {
+        for (var _i = 0, HOTELS_1 = exports.HOTELS; _i < HOTELS_1.length; _i++) {
+            var x = HOTELS_1[_i];
+            if (x.id === idHotel) {
+                x.rooms.push(room);
+            }
+        }
+    };
+    HotelService.prototype.generateRoomIdForHotel = function (idHotel) {
+        var nr = 0;
+        for (var _i = 0, HOTELS_2 = exports.HOTELS; _i < HOTELS_2.length; _i++) {
+            var x = HOTELS_2[_i];
+            if (x.id === idHotel) {
+                nr = x.rooms.length + 1;
+            }
+        }
+        return nr;
+    };
     return HotelService;
 }());
 HotelService = __decorate([
@@ -22,6 +46,12 @@ exports.HOTELS = [
         rooms: [{
                 id: 1,
                 roomNumber: 201,
+                description: "This is a nice room",
+                available: true
+            }, {
+                id: 2,
+                roomNumber: 202,
+                description: "This is a very nice room",
                 available: true
             }],
         description: "This is the description of Rahova Hotel",
@@ -31,8 +61,9 @@ exports.HOTELS = [
         id: 2,
         name: "Berceni hotel",
         rooms: [{
-                id: 1,
-                roomNumber: 201,
+                id: 3,
+                roomNumber: 202,
+                description: "This is another nice room",
                 available: true
             }],
         description: "This is the description of Berceni Hotel",

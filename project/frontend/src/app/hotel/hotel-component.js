@@ -10,32 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var employee_service_1 = require("../employee/employee.service");
-var user_service_1 = require("../services/user.service");
+var hotel_service_1 = require("../hotel/hotel.service");
 var auth_service_1 = require("../services/auth.service");
-var EmployeeHomeComponent = (function () {
-    function EmployeeHomeComponent(empService, userService, authService, router) {
-        this.empService = empService;
-        this.userService = userService;
-        this.authService = authService;
+var HotelComponent = (function () {
+    function HotelComponent(hotelService, route, auth, router) {
+        this.hotelService = hotelService;
+        this.route = route;
+        this.auth = auth;
         this.router = router;
-        this.manager = this.userService.getManagerForEmployee(this.authService.currentUser.id);
-        console.log(this.manager);
-        this.hotels = this.manager.hotels;
     }
-    EmployeeHomeComponent.prototype.goToHotel = function (id) {
-        this.router.navigate(['emp/hotel/' + id]);
+    HotelComponent.prototype.ngOnInit = function () {
+        this.hotel = this.hotelService.getHotel(+this.route.snapshot.params['id']);
+        this.rooms = this.hotel.rooms;
+        console.log(this.rooms);
     };
-    return EmployeeHomeComponent;
+    HotelComponent.prototype.addRoom = function () {
+        this.hotelService.setCurrentHotel(this.hotel);
+        this.router.navigate(['/emp/add']);
+    };
+    return HotelComponent;
 }());
-EmployeeHomeComponent = __decorate([
+HotelComponent = __decorate([
     core_1.Component({
-        templateUrl: "app/employee/employee-home.component.html"
+        templateUrl: "app/hotel/hotel.component.html"
     }),
-    __metadata("design:paramtypes", [employee_service_1.EmployeeService,
-        user_service_1.UserService,
+    __metadata("design:paramtypes", [hotel_service_1.HotelService,
+        router_1.ActivatedRoute,
         auth_service_1.AuthService,
         router_1.Router])
-], EmployeeHomeComponent);
-exports.EmployeeHomeComponent = EmployeeHomeComponent;
-//# sourceMappingURL=employee-home.component.js.map
+], HotelComponent);
+exports.HotelComponent = HotelComponent;
+//# sourceMappingURL=hotel-component.js.map
