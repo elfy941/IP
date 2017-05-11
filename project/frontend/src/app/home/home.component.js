@@ -14,7 +14,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         selector: "home",
-        templateUrl: "app/home/home.component.html"
+        templateUrl: "app/home/home.component.html",
+        styles: ["\n        #imaginary_container{\n            margin-top:20%; /* Don't copy this */\n        }\n    .stylish-input-group .input-group-addon{\n     background: white !important; \n        }\n    .stylish-input-group .form-control{\n\t    border-right:0; \n\t    box-shadow:0 0 0; \n\t    border-color:#ccc;\n    }\n    .stylish-input-group button{\n        border:0;\n        background:transparent;\n    }\n    "]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
