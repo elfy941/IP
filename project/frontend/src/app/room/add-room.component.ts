@@ -17,11 +17,12 @@ export class AddRoomComponent {
 
     }
 
-    AddRoom(){
+    AddRoom(form:any){
         this.room = {
-            id:4,
-            description:"zer nice room",
-            roomNumber:909,
+            //id:3,
+            id:this.hotelService.generateRoomIdForHotel(this.hotelService.currentHotel.id),
+            description:form.description,
+            roomNumber:form.number,
             available:true
         }
 

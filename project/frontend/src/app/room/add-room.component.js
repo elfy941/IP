@@ -16,11 +16,12 @@ var AddRoomComponent = (function () {
         this.router = router;
         this.hotelService = hotelService;
     }
-    AddRoomComponent.prototype.AddRoom = function () {
+    AddRoomComponent.prototype.AddRoom = function (form) {
         this.room = {
-            id: 4,
-            description: "zer nice room",
-            roomNumber: 909,
+            //id:3,
+            id: this.hotelService.generateRoomIdForHotel(this.hotelService.currentHotel.id),
+            description: form.description,
+            roomNumber: form.number,
             available: true
         };
         this.hotelService.addRoomToHotel(this.hotelService.currentHotel.id, this.room);
