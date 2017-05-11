@@ -14,6 +14,6 @@ exports.userRoutes = [
     {
         path: 'createEmp',
         component: create_employee_1.CreateEmployeeComponent
-    }
+    },
 ];
 //# sourceMappingURL=manager.routes.js.map

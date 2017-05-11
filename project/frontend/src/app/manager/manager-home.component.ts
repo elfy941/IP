@@ -1,4 +1,5 @@
 import {Component,OnInit} from '@angular/core'
+import {Router} from '@angular/router'
 
 import {HotelService} from '../hotel/hotel.service'
 import {AuthService} from '../services/auth.service'
@@ -24,7 +25,8 @@ export class ManagerHomeComponent implements OnInit {
 
     constructor(private hotelService:HotelService,
         private auth:AuthService,
-        private userService:UserService){
+        private userService:UserService,
+        private router:Router){
 
             this.employees = this.getEmployees()
             this.hotels = this.getHotels()
@@ -38,6 +40,6 @@ export class ManagerHomeComponent implements OnInit {
     //return employees for current user
     getEmployees(){
         return this.userService.getUserEmployees(this.auth.currentUser.id)
-    }
+    }   
 
 }

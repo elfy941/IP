@@ -12,11 +12,11 @@ var forms_1 = require("@angular/forms");
 var employee_routs_1 = require("../employee/employee.routs");
 var employee_service_1 = require("../employee/employee.service");
 var employee_home_component_1 = require("../employee/employee-home.component");
-var hotel_component_1 = require("../hotel/hotel-component");
 var hotel_service_1 = require("../hotel/hotel.service");
 var room_component_1 = require("../room/room.component");
 var room_list_component_1 = require("../room/room-list.component");
 var add_room_component_1 = require("../room/add-room.component");
+var hotel_component_1 = require("../hotel/hotel-component");
 var EmployeeModule = (function () {
     function EmployeeModule() {
     }
@@ -32,10 +32,10 @@ EmployeeModule = __decorate([
         ],
         declarations: [
             employee_home_component_1.EmployeeHomeComponent,
-            hotel_component_1.HotelComponent,
             room_component_1.RoomComponent,
             room_list_component_1.RoomListComponent,
-            add_room_component_1.AddRoomComponent
+            add_room_component_1.AddRoomComponent,
+            hotel_component_1.HotelComponent
         ],
         providers: [
             employee_service_1.EmployeeService,

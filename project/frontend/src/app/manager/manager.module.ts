@@ -14,6 +14,7 @@ import {CreateEmployeeComponent} from '../manager/create-employee'
 import {EmployeeService} from '../employee/employee.service'
 
 
+
 @NgModule({
     imports:[
         CommonModule,
@@ -24,7 +25,7 @@ import {EmployeeService} from '../employee/employee.service'
     declarations:[
         ManagerHomeComponent,
         ManagerProfileComponent,
-        CreateEmployeeComponent
+        CreateEmployeeComponent        
     ],
     providers:[
         HotelService,

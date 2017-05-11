@@ -25,7 +25,7 @@ import {appRoutes} from './routs'
     NavigationComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent   
+    LoginComponent
      ],
   bootstrap:    [ AppComponent ],
   providers:[

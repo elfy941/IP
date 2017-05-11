@@ -14,6 +14,6 @@ export const userRoutes = [
     {
         path:'createEmp',
         component:CreateEmployeeComponent        
-    }
+    },     
     
 ]

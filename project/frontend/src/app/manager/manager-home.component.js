@@ -9,14 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var hotel_service_1 = require("../hotel/hotel.service");
 var auth_service_1 = require("../services/auth.service");
 var user_service_1 = require("../services/user.service");
 var ManagerHomeComponent = (function () {
-    function ManagerHomeComponent(hotelService, auth, userService) {
+    function ManagerHomeComponent(hotelService, auth, userService, router) {
         this.hotelService = hotelService;
         this.auth = auth;
         this.userService = userService;
+        this.router = router;
         this.employees = [];
         this.hotels = [];
         this.employees = this.getEmployees();
@@ -42,7 +44,8 @@ ManagerHomeComponent = __decorate([
     }),
     __metadata("design:paramtypes", [hotel_service_1.HotelService,
         auth_service_1.AuthService,
-        user_service_1.UserService])
+        user_service_1.UserService,
+        router_1.Router])
 ], ManagerHomeComponent);
 exports.ManagerHomeComponent = ManagerHomeComponent;
 //# sourceMappingURL=manager-home.component.js.map
