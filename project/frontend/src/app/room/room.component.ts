@@ -19,7 +19,8 @@ import {IRoom} from '../shared/model'
             <div class="col-md-5">
                 <h3>Room : {{room.roomNumber}}</h3>
                 <h4>Description : {{room.description}} </h4>
-                <h3>Available : {{room.available}}</h3>                
+                <h3>Available : {{room.available}}</h3>  
+                <h3>Price: {{room.price}} &euro;</h3>                          
                 <a class="btn btn-primary" href="portfolio-item.html">Book Room</a>
             </div>
        

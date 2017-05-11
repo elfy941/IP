@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row">        
+        <div id="filter-panel" class="collapse filter-panel">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form #searchForm="ngForm" class="form-inline" role="form" (ngSubmit)="search(searchForm.value)">
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="price">Max price:</label>
+                            <input (ngModel)="price" type="text" name="price" class="form-control" id="price">                                                       
+                        </div> <!-- form group [rows] -->
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
+                            <input (ngModel)="location" name="location" type="text" class="form-control input-sm" id="pref-search">
+                        </div><!-- form group [search] -->
+                        <div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
+                            <select (ngModel)="order" name="order" id="pref-orderby" class="form-control">
+                                <option>Descendent</option>
+                                <option>Ascending</option>
+                            </select>                                
+                        </div> <!-- form group [order by] --> 
+                        <div class="form-group">    
+                            <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                <label><input type="checkbox"> Ingested</label>
+                            </div>
+                            <div class="checkbox" style="margin-left:10px; margin-right:10px;">
+                                <label><input type="checkbox"> Automated</label>
+                            </div>
+                            <button type="submit" class="btn btn-default filter-col">
+                                <span class="glyphicon glyphicon-record"></span> Search
+                            </button>  
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+            <span class="glyphicon glyphicon-cog"></span> Advanced Search
+        </button>
+	</div>
+</div>
