@@ -38,12 +38,24 @@ export class HotelService {
             }
         return nr
    }
+
+   bookRoom(idHotel:number,idRoom:number){
+        for(let hotel of HOTELS){
+            if(hotel.id === idHotel){
+                for(let room of hotel.rooms){
+                    if(room.id === idRoom){
+                        room.available = false
+                    }
+                }
+            }   
+        }
+   }
    
   
 
 }
 
-export const     HOTELS:IHotel[] =[
+export const HOTELS:IHotel[] =[
     {
         id:1,
         name:"Rahova hotel",       

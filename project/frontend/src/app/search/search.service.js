@@ -13,31 +13,63 @@ var SearchService = (function () {
     SearchService.prototype.getHotels = function () {
         return this.hotels;
     };
-    SearchService.prototype.coppyArray = function () {
-        this.hotelsCoppy = [];
-        for (var _i = 0, HOTELS_1 = hotel_service_1.HOTELS; _i < HOTELS_1.length; _i++) {
-            var h = HOTELS_1[_i];
-            this.hotelsCoppy.push(h);
-        }
-    };
-    SearchService.prototype.search = function (obj) {
-        var hotels = [];
-        this.coppyArray();
-        console.log(hotel_service_1.HOTELS);
-        //search all the hotels after hotel location
-        hotels = this.hotelsCoppy.filter(function (h) { return h.location === obj.location; });
+    //not working momentarly
+    SearchService.prototype.sortByCriteria = function (hotels, obj) {
+        var results;
         for (var _i = 0, hotels_1 = hotels; _i < hotels_1.length; _i++) {
             var hotel = hotels_1[_i];
-            hotel.rooms = hotel.rooms.filter(function (room) { return room.price <= obj.price; });
+            hotel.rooms.sort(function (h1, h2) {
+                if (obj.order === 'Ascending') {
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            });
+            results.push(hotel);
         }
-        //remove hotels with 0 rooms
-        hotels = hotels.filter(function (h) { return h.rooms.length > 0; });
-        this.hotels = hotels;
-        this.hotelsCoppy = null;
-        return hotels;
+        return results;
     };
-    SearchService.prototype.emptyHotelArray = function () {
-        this.hotels = null;
+    /*
+        search algorithm uses an ISearch object as parameter.
+        The alg searches first for the location of the hote that was introduced ,
+            then after the room price
+        The final results will contain only hotels that have at least on room suited for the
+            search criteria
+    */
+    SearchService.prototype.search = function (obj) {
+        var hotels = [];
+        var results = [];
+        console.log(hotel_service_1.HOTELS);
+        //search all the hotels after hotel location
+        hotels = hotel_service_1.HOTELS.filter(function (h) { return h.location === obj.location; });
+        for (var _i = 0, hotels_2 = hotels; _i < hotels_2.length; _i++) {
+            var hotel = hotels_2[_i];
+            // hotel.rooms = hotel.rooms.filter(room => room.price <= obj.price)   
+            var result = {
+                id: hotel.id,
+                description: hotel.description,
+                name: hotel.name,
+                nrRooms: hotel.nrRooms,
+                location: hotel.location,
+                rooms: []
+            };
+            for (var _a = 0, _b = hotel.rooms; _a < _b.length; _a++) {
+                var room = _b[_a];
+                if (room.price <= obj.price && room.available === true) {
+                    result.rooms.push(room);
+                }
+            }
+            if (result != undefined && result != null) {
+                if (result.rooms.length > 0) {
+                    results.push(result);
+                }
+            }
+        }
+        console.log(results);
+        // this.hotels =  this.sortByCriteria(results,obj)        
+        this.hotels = results;
+        return this.hotels;
     };
     return SearchService;
 }());

@@ -33,6 +33,19 @@ var HotelService = (function () {
         }
         return nr;
     };
+    HotelService.prototype.bookRoom = function (idHotel, idRoom) {
+        for (var _i = 0, HOTELS_3 = exports.HOTELS; _i < HOTELS_3.length; _i++) {
+            var hotel = HOTELS_3[_i];
+            if (hotel.id === idHotel) {
+                for (var _a = 0, _b = hotel.rooms; _a < _b.length; _a++) {
+                    var room = _b[_a];
+                    if (room.id === idRoom) {
+                        room.available = false;
+                    }
+                }
+            }
+        }
+    };
     return HotelService;
 }());
 HotelService = __decorate([

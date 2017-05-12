@@ -1,25 +1,35 @@
     <!-- Page Content -->
-    <div class="container">        
-
+    <div class="container">               
         <!-- Projects Row -->
+    <div *ngIf="!empty">
         <div *ngFor="let hotel of hotels">
             <h3>{{hotel.name}}</h3>            
         <div class="row">
+            
             <div *ngFor="let room of hotel.rooms">
-            <div class="col-md-4 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Room:{{room.number}}</a>
-                </h3>
-                <h2>Price:{{room.price}}</h2>
-                <p>Description: {{room.description}}</p>
-                <input type="button" value="Book" class="btn btn-primary" (click)="book(hotel.id,room.id)" >
-            </div>
+                <div *ngIf="room.available === true">
+                    <div class="col-md-4 img-portfolio">
+                        <a href="portfolio-item.html">
+                            <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
+                        </a>
+                        <h3>
+                            <a href="portfolio-item.html">Room:{{room.roomNumber}}</a>
+                        </h3>
+                        <h2>Price:{{room.price}}</h2>
+                        <p>Description: {{room.description}}</p>
+                <!--<p>Avaibility: {{room.available}}</p>-->
+                        <input type="button" value="Book" class="btn btn-primary" (click)="book(hotel.id,room.id)" >
+                    </div>
+                </div>
             </div>
         </div>
         </div>
+    </div>
+    <div *ngIf="empty">
+        <h1>No results we're found , we are sorry </h1>
+    </div>
+
+    <a [routerLink]="['/home']">Go back to search</a>
         <!-- /.row -->
         <hr>
     </div>

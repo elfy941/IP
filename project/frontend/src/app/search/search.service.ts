@@ -9,44 +9,74 @@ import {HOTELS} from '../hotel/hotel.service'
 @Injectable()
 export class SearchService {
    
-    hotelsCoppy:IHotel[]
     hotels:IHotel[]
 
     getHotels():IHotel[]{
         return this.hotels
     }
 
-    coppyArray(){
-        this.hotelsCoppy = []
-        for(let h of HOTELS){
-            this.hotelsCoppy.push(h)
+    //not working momentarly
+    sortByCriteria(hotels:IHotel[],obj:ISearch):IHotel[]{
+        let results : IHotel[]
+
+        for(let hotel of hotels){
+            hotel.rooms.sort((h1:IRoom,h2:IRoom) => {
+                if(obj.order === 'Ascending'){
+                    return 1
+                }else{
+                    return -1
+                }
+            })
+            results.push(hotel)
         }
+
+        return results                                 
     }
 
+    /*
+        search algorithm uses an ISearch object as parameter.
+        The alg searches first for the location of the hote that was introduced , 
+            then after the room price
+        The final results will contain only hotels that have at least on room suited for the 
+            search criteria
+    */    
     search(obj:ISearch):IHotel[]{
-        let hotels:IHotel[] = [] 
-        this.coppyArray()       
+
+        let hotels:IHotel[] = []
+        let results:IHotel[] = []             
         
         console.log(HOTELS)
         //search all the hotels after hotel location
-        hotels = this.hotelsCoppy.filter(h => h.location === obj.location)    
+        hotels = HOTELS.filter(h => h.location === obj.location)    
 
         for(let hotel of hotels){
-            hotel.rooms = hotel.rooms.filter(room => room.price <= obj.price)                        
+            // hotel.rooms = hotel.rooms.filter(room => room.price <= obj.price)   
+
+            let result:IHotel = {
+                id:hotel.id,
+                description:hotel.description,
+                name:hotel.name,
+                nrRooms:hotel.nrRooms,
+                location:hotel.location,
+                rooms:[]                             
+            }
+            for(let room of hotel.rooms){
+                if(room.price <= obj.price && room.available === true){
+                    result.rooms.push(room)
+                }
+            }
+            if(result != undefined && result != null) {
+                if(result.rooms.length > 0){
+                    results.push(result)
+                }   
+            }
+            
         }
-
-        //remove hotels with 0 rooms
-        hotels = hotels.filter(h => h.rooms.length > 0)
-
-        this.hotels = hotels
-        this.hotelsCoppy = null
-
-        return hotels
-
-    }
-
-    emptyHotelArray(){
-        this.hotels = null
+              
+        console.log(results)
+        // this.hotels =  this.sortByCriteria(results,obj)        
+        this.hotels = results
+        return this.hotels
     }
 
 }

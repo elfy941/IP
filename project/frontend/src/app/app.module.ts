@@ -14,6 +14,8 @@ import {EmployeeService} from './employee/employee.service'
 import {SearchComponent} from './search/search.component'
 import {SearchService} from './search/search.service'
 import {SearchResult} from './search/search-result.component'
+import {HotelService} from './hotel/hotel.service'
+import {ToasterModule} from 'angular2-toaster';
 
 
 import {appRoutes} from './routs'
@@ -22,7 +24,8 @@ import {appRoutes} from './routs'
   imports:      [ 
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule 
+    FormsModule,
+    ToasterModule 
      ],
   declarations: [ 
     AppComponent,
@@ -38,7 +41,8 @@ import {appRoutes} from './routs'
     AuthService,
     UserService,
     EmployeeService,
-    SearchService,    
+    SearchService,
+    HotelService    
   ]
 })
 export class AppModule {}
