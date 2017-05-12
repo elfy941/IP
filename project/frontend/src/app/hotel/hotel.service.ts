@@ -38,7 +38,21 @@ export class HotelService {
             }
         return nr
    }
+
+   bookRoom(idHotel:number,idRoom:number){
+        for(let hotel of HOTELS){
+            if(hotel.id === idHotel){
+                for(let room of hotel.rooms){
+                    if(room.id === idRoom){
+                        room.available = false
+                    }
+                }
+            }   
+        }
+   }
    
+  
+
 }
 
 export const HOTELS:IHotel[] =[
@@ -49,15 +63,18 @@ export const HOTELS:IHotel[] =[
             id:1,
             roomNumber:201,
             description:"This is a nice room",
-            available:true
+            available:true,
+            price:300
         },{
             id:2,
             roomNumber:202,
             description:"This is a very nice room",
-            available:true
+            available:true,
+            price:100
         }],
         description:"This is the description of Rahova Hotel",
-        nrRooms:400
+        nrRooms:400,
+        location:"Bucuresti"
     },
      {
         id:2,
@@ -66,10 +83,14 @@ export const HOTELS:IHotel[] =[
             id:3,
             roomNumber:202,
             description:"This is another nice room",
-            available:true
+            available:true,
+            price:250
         }],
         description:"This is the description of Berceni Hotel",
-        nrRooms:400
+        nrRooms:400,
+        location:"Bucuresti"
     }
 ]
+
+
 

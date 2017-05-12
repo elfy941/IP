@@ -3,6 +3,7 @@ import {Routes} from '@angular/router'
 import {HomeComponent} from './home/home.component'
 import {RegisterComponent} from './register/register.component'
 import {LoginComponent} from './login/login.component'
+import {SearchResult} from './search/search-result.component'
 
 export const appRoutes:Routes = [
    
@@ -34,6 +35,10 @@ export const appRoutes:Routes = [
     {
         path:'emp',
         loadChildren:'app/employee/employee.module#EmployeeModule'
+    },
+    {
+        path:'result',
+        component:SearchResult
     }
    
         

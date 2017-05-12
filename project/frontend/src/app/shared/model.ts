@@ -28,6 +28,7 @@ export interface IRoom {
     roomNumber:number,
     description:string,
     available:boolean,
+    price:number
     
 }
 
@@ -38,5 +39,6 @@ export interface IHotel {
     rooms:IRoom[],
     description:string,
     nrRooms:number,
+    location:string
 
 }

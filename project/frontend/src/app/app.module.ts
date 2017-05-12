@@ -11,6 +11,12 @@ import {LoginComponent} from './login/login.component'
 import {AuthService} from './services/auth.service'
 import {UserService} from './services/user.service'
 import {EmployeeService} from './employee/employee.service'
+import {SearchComponent} from './search/search.component'
+import {SearchService} from './search/search.service'
+import {SearchResult} from './search/search-result.component'
+import {HotelService} from './hotel/hotel.service'
+import {ToasterModule} from 'angular2-toaster';
+
 
 import {appRoutes} from './routs'
 
@@ -18,20 +24,25 @@ import {appRoutes} from './routs'
   imports:      [ 
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule 
+    FormsModule,
+    ToasterModule 
      ],
   declarations: [ 
     AppComponent,
     NavigationComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent,
+    SearchResult
      ],
   bootstrap:    [ AppComponent ],
   providers:[
     AuthService,
     UserService,
-    EmployeeService
+    EmployeeService,
+    SearchService,
+    HotelService    
   ]
 })
 export class AppModule {}

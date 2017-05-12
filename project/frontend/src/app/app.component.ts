@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   template: `
     <nav-bar></nav-bar>
+    <toaster-container></toaster-container>
     <router-outlet></router-outlet>
 
   `

@@ -33,6 +33,19 @@ var HotelService = (function () {
         }
         return nr;
     };
+    HotelService.prototype.bookRoom = function (idHotel, idRoom) {
+        for (var _i = 0, HOTELS_3 = exports.HOTELS; _i < HOTELS_3.length; _i++) {
+            var hotel = HOTELS_3[_i];
+            if (hotel.id === idHotel) {
+                for (var _a = 0, _b = hotel.rooms; _a < _b.length; _a++) {
+                    var room = _b[_a];
+                    if (room.id === idRoom) {
+                        room.available = false;
+                    }
+                }
+            }
+        }
+    };
     return HotelService;
 }());
 HotelService = __decorate([
@@ -47,15 +60,18 @@ exports.HOTELS = [
                 id: 1,
                 roomNumber: 201,
                 description: "This is a nice room",
-                available: true
+                available: true,
+                price: 300
             }, {
                 id: 2,
                 roomNumber: 202,
                 description: "This is a very nice room",
-                available: true
+                available: true,
+                price: 100
             }],
         description: "This is the description of Rahova Hotel",
-        nrRooms: 400
+        nrRooms: 400,
+        location: "Bucuresti"
     },
     {
         id: 2,
@@ -64,10 +80,12 @@ exports.HOTELS = [
                 id: 3,
                 roomNumber: 202,
                 description: "This is another nice room",
-                available: true
+                available: true,
+                price: 250
             }],
         description: "This is the description of Berceni Hotel",
-        nrRooms: 400
+        nrRooms: 400,
+        location: "Bucuresti"
     }
 ];
 //# sourceMappingURL=hotel.service.js.map

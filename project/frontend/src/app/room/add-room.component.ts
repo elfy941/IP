@@ -23,7 +23,8 @@ export class AddRoomComponent {
             id:this.hotelService.generateRoomIdForHotel(this.hotelService.currentHotel.id),
             description:form.description,
             roomNumber:form.number,
-            available:true
+            available:true,
+            price:form.price
         }
 
         this.hotelService.addRoomToHotel(this.hotelService.currentHotel.id,this.room)
