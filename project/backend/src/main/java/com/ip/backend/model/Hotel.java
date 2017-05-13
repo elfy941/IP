@@ -1,6 +1,10 @@
 package com.ip.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -25,10 +29,10 @@ public class Hotel {
     @Column(name = "LOCATION")
     private String location;
 
-    @OneToMany(mappedBy = "hotel" , cascade = CascadeType.ALL)
-    private Set<Room> rooms;
+    @OneToMany(mappedBy = "hotel"  , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private Set<Room> rooms = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User userId;
 
@@ -38,6 +42,7 @@ public class Hotel {
 
     public void setUser(User user) {
         this.userId = user;
+        user.getHotels().add(this);
     }
 
     public Hotel() {
@@ -89,5 +94,19 @@ public class Hotel {
 
     public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
+        rooms.forEach(room -> room.setHotel(this));
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "hotelId=" + hotelId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", nrRooms=" + nrRooms +
+                ", location='" + location + '\'' +
+                ", rooms=" + rooms +
+                ", userId=" + userId +
+                '}';
     }
 }

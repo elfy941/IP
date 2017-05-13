@@ -1,6 +1,9 @@
 package com.ip.backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -28,7 +31,7 @@ public class Room {
     @Column(name = "PRICE")
     private Long price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
@@ -38,6 +41,7 @@ public class Room {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+        hotel.getRooms().add(this);
     }
 
     public Room() {
@@ -81,5 +85,17 @@ public class Room {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", roomNumber=" + roomNumber +
+                ", description='" + description + '\'' +
+                ", available=" + available +
+                ", price=" + price +
+                ", hotel=" + hotel +
+                '}';
     }
 }

@@ -32,6 +32,8 @@ public class TestController {
     private HotelService hotelService;
     @Autowired
     private UserService userService;
+
+
     //@formatter:off
     @RequestMapping(
             value = "/api/emps",

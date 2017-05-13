@@ -1,7 +1,11 @@
 package com.ip.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -34,11 +38,11 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
-    @OneToMany(mappedBy = "userId" , cascade = CascadeType.ALL,targetEntity = Hotel.class)
-    private Set<Hotel> hotels;
+    @OneToMany(mappedBy = "userId" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private Set<Hotel> hotels = new HashSet<>();
 
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL,targetEntity = Employee.class)
-    private Set<Employee> emps;
+    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    private Set<Employee> emps = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -94,6 +98,7 @@ public class User {
 
     public void setHotels(Set<Hotel> hotels) {
         this.hotels = hotels;
+        hotels.forEach(hotel -> hotel.setUser(this));
     }
 
     public Set<Employee> getEmps() {
@@ -102,5 +107,20 @@ public class User {
 
     public void setEmps(Set<Employee> emps) {
         this.emps = emps;
+        emps.forEach(emp -> emp.setUser(this));
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", hotels=" + hotels +
+                ", emps=" + emps +
+                '}';
     }
 }

@@ -1,5 +1,8 @@
 package com.ip.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -29,7 +32,7 @@ public class Employee {
      @Column(name = "PASSWORD")
      private String password;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -40,6 +43,7 @@ public class Employee {
 
     public void setUser(User user) {
         this.user = user;
+        user.getEmps().add(this);
     }
 
     public Employee() {
@@ -83,5 +87,17 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
