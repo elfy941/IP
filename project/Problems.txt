@@ -1,0 +1,5 @@
+Backend : 
+
+1) PasswordEncoder for spring security is not working as expected
+2) Unable to add a new hotel to the database
+3) Unable to connect to external database
