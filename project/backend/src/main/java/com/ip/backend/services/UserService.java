@@ -10,5 +10,12 @@ import java.util.Collection;
 public interface UserService {
 
     Collection<User> findAll();
+    User findById(Long id);
+    void setCurrentUser(User user);
+    User getCurrentUser();
+
+    User findByEmail(String email);
+
+    User createUser(User user);
 
 }

@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by VictorMachita on 5/13/2017.
@@ -40,11 +39,11 @@ public class User {
 
     @OneToMany(mappedBy = "user" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Hotel> hotels = new HashSet<>();
+    private Collection<Hotel> hotels = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Employee> emps = new HashSet<>();
+    private Collection<Employee> emps = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -94,22 +93,25 @@ public class User {
         this.password = password;
     }
 
-    public Set<Hotel> getHotels() {
+    public Collection<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(Set<Hotel> hotels) {
+    public void setHotels(ArrayList<Hotel> hotels) {
         this.hotels = hotels;
         hotels.forEach(hotel -> hotel.setUser(this));
     }
 
-    public Set<Employee> getEmps() {
+    public Collection<Employee> getEmps() {
         return emps;
     }
 
-    public void setEmps(Set<Employee> emps) {
+    public void setEmps(ArrayList<Employee> emps) {
         this.emps = emps;
-        emps.forEach(emp -> emp.setUser(this));
+        Iterator<Employee> it = emps.iterator();
+        while(it.hasNext()){
+            it.next().setUser(this);
+        }
     }
 
     @Override

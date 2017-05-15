@@ -31,7 +31,7 @@ public class Room {
     @Column(name = "PRICE")
     private Long price;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hotel_id")
     @JsonBackReference
     private Hotel hotel;

@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by VictorMachita on 5/13/2017.
@@ -14,7 +14,7 @@ import java.util.Set;
 public class Hotel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hotelId;
 
     @Column(name = "NAME")
@@ -29,11 +29,11 @@ public class Hotel {
     @Column(name = "LOCATION")
     private String location;
 
-    @OneToMany(mappedBy = "hotel"  , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hotel" , cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Room> rooms = new HashSet<>();
+    private Collection<Room> rooms = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
@@ -90,11 +90,11 @@ public class Hotel {
         this.location = location;
     }
 
-    public Set<Room> getRooms() {
+    public Collection<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Set<Room> rooms) {
+    public void setRooms(ArrayList<Room> rooms) {
         this.rooms = rooms;
         rooms.forEach(room -> room.setHotel(this));
     }
