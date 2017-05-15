@@ -38,10 +38,12 @@ public class User {
     @Column(name = "PASSWORD")
     private String password;
 
-    @OneToMany(mappedBy = "userId" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user" ,fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Hotel> hotels = new HashSet<>();
 
     @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Employee> emps = new HashSet<>();
 
     public Long getId() {

@@ -30,18 +30,20 @@ public class Hotel {
     private String location;
 
     @OneToMany(mappedBy = "hotel"  , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Room> rooms = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User userId;
+    @JsonBackReference
+    private User user;
 
     public User getUser() {
-        return userId;
+        return user;
     }
 
     public void setUser(User user) {
-        this.userId = user;
+        this.user = user;
         user.getHotels().add(this);
     }
 
@@ -106,7 +108,7 @@ public class Hotel {
                 ", nrRooms=" + nrRooms +
                 ", location='" + location + '\'' +
                 ", rooms=" + rooms +
-                ", userId=" + userId +
+                ", userId=" + user +
                 '}';
     }
 }
