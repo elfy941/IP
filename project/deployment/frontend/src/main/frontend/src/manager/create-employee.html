@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Create Employee</h1>
+     <form #createEmpForm="ngForm" (ngSubmit)="create(createEmpForm.value)">
+  <div class="form-group">
+    <label for="firtName">First Name:</label>
+    <input (ngModel)="firstName" name="firstName" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input (ngModel)="lastName" name="lastName" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input (ngModel)="email" name="email" type="email" class="form-control" id="email">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input (ngModel)="password" name="password" type="password" class="form-control" id="pwd">
+  </div> 
+  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+</form>
+</div>

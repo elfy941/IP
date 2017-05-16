@@ -1,0 +1,1 @@
+{"version":3,"file":"manager.routes.js","sourceRoot":"","sources":["manager.routes.ts"],"names":[],"mappings":";AAAA,4EAAsE;AACtE,kFAA4E;AAC5E,8DAAkE;AAErD,QAAA,UAAU,GAAG;IACtB;QACI,IAAI,EAAC,MAAM;QACX,SAAS,EAAC,6CAAoB;KACjC;IACD;QACI,IAAI,EAAC,SAAS;QACd,SAAS,EAAC,mDAAuB;KACpC;IACD;QACI,IAAI,EAAC,WAAW;QAChB,SAAS,EAAC,yCAAuB;KACpC;CAEJ,CAAA"}
