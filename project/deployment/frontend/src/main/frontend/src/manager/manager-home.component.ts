@@ -13,13 +13,18 @@ import {UserService} from '../services/user.service'
 
 export class ManagerHomeComponent implements OnInit {
 
-    employees:IEmployee[] = []
+    employees:IEmployee[]
     hotels:IHotel[] = []
 
         ngOnInit(): void {
             console.log(this.getHotels())
+             this.userService.getUserEmployees(this.auth.currentUser.id).then(
+                emp => this.employees = emp                        
+            )
             
-            console.log(this.employees)
+            this.userService.getUserHotels(this.auth.currentUser.id).then(
+                hotels => this.hotels = hotels
+            )
         }
 
 
@@ -28,8 +33,8 @@ export class ManagerHomeComponent implements OnInit {
         private userService:UserService,
         private router:Router){
 
-            this.employees = this.getEmployees()
-            this.hotels = this.getHotels()
+           
+           
 
     }
     //method returns hotels for current user 

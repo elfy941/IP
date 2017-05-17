@@ -19,6 +19,11 @@ export class ManagerProfileComponent implements OnInit {
 
     ngOnInit(): void {
             this.currentUser = this.auth.currentUser
+            this.userService.getUserEmployees(this.currentUser.id).then(
+                emp => this.employees = emp                        
+            )
+            console.log(this.employees)
+
     }
 
 
@@ -27,7 +32,7 @@ export class ManagerProfileComponent implements OnInit {
         private userService:UserService,
         private empService:EmployeeService){
 
-        this.employees = this.getEmployees()
+        
         this.hotels = this.getHotels()
 
     }

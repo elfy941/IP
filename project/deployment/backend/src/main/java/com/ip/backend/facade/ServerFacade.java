@@ -110,9 +110,29 @@ public class ServerFacade {
         roomService.update(r);
         return r;
 
+    }
 
+    /**This method return all the employees of an user
+     *
+     * @param id - id of the user
+     * @return - collection object containing all the employee objects of an user
+     */
+    public Collection<Employee> getUserEmployees(long id){
+
+        return userService.findById(id).getEmps();
 
     }
+
+    /**This method returns all the Hotel objects for an user
+     *
+     * @param id - id of the user
+     * @return - collection object containing all the Hotel objects
+     */
+    public Collection<Hotel> getUserHotels(long id){
+        return userService.findById(id).getHotels();
+    }
+
+
 
 
 

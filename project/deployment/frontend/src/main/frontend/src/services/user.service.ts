@@ -1,4 +1,11 @@
 import {Injectable} from '@angular/core'
+import {Http,Response} from '@angular/http'
+
+
+import {Observable} from 'rxjs/observable'
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/toPromise';
 
 import { IUser } from '../shared/model';
 import {HOTELS} from '../hotel/hotel.service'
@@ -6,10 +13,43 @@ import {IHotel} from '../shared/model'
 import {EMPLOYEES} from '../employee/employee.service'
 import {IEmployee} from '../shared/model'
 
+
 @Injectable()
 export class UserService {
 
+    private userUrl = 'api/users' //URL to web api
+    
+
     manager:IUser
+    emp:IEmployee[]
+
+    constructor(private http:Http){
+
+    }
+
+    getUsers():Observable<IUser[]> {
+        return this.http.get(this.userUrl).map(this.extractData).catch(this.handleError)
+    }
+
+
+    private extractData(res:Response){
+        let body = res.json()
+        return body.data || { };
+    }
+
+    private handleError (error: Response | any) {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
 
     getUser(email:string,password:string):IUser{
         
@@ -28,15 +68,37 @@ export class UserService {
         }
         return hotels
     }
+    /*
+        This method returns all the IHotel objects of an user
+        @toUSE
+    */
+    getUserHotels(id:number):Promise<IHotel[]>{
+        let url = `/api/user/hotels/${id}`
+        return this.http.get(url).toPromise().then(response =>{
+            console.log(response.json());
+            return response.json() as IHotel[]            
+        }).catch(this.handleError)
+        
+    }
 
-   getUserEmployees(id:number):IEmployee[]{
-       let emp:IEmployee[] = []
-       for(let user of USERS){
-        if(user.id === id){
-            emp = user.employees
-        }
-       }
-       return emp
+    /*
+        This method returns all the IEmployee objects of an user
+        @toUSE
+    */
+   getUserEmployees(id:number):Promise<IEmployee[]>{
+       
+    //    for(let user of USERS){
+    //     if(user.id === id){
+    //         emp = user.employees
+    //     }
+    //    }
+        let url = `/api/user/emps/${id}`
+
+        return this.http.get(url).toPromise().then(response => {
+            console.log(response.json());
+            return response.json() as IEmployee[]
+        }).catch(this.handleError);
+                       
    }
 
    addEmployeeToManager(id:number,empl:IEmployee){
