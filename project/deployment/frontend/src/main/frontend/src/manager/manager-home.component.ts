@@ -18,13 +18,14 @@ export class ManagerHomeComponent implements OnInit {
 
         ngOnInit(): void {
             console.log(this.getHotels())
-             this.userService.getUserEmployees(this.auth.currentUser.id).then(
-                emp => this.employees = emp                        
-            )
+            //  this.userService.getUserEmployees(this.auth.currentUser.id).then(
+            //     emp => this.employees = emp                        
+            // )
             
             this.userService.getUserHotels(this.auth.currentUser.id).then(
                 hotels => this.hotels = hotels
             )
+            this.getEmployees()
         }
 
 

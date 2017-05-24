@@ -19,9 +19,9 @@ export class ManagerProfileComponent implements OnInit {
 
     ngOnInit(): void {
             this.currentUser = this.auth.currentUser
-            this.userService.getUserEmployees(this.currentUser.id).then(
-                emp => this.employees = emp                        
-            )
+            // this.userService.getUserEmployees(this.currentUser.id).then(
+            //     emp => this.employees = emp                        
+            // )
             console.log(this.employees)
 
     }
@@ -34,6 +34,7 @@ export class ManagerProfileComponent implements OnInit {
 
         
         this.hotels = this.getHotels()
+        this.employees = this.getEmployees()
 
     }
 

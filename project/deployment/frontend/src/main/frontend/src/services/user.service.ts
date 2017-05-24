@@ -85,20 +85,30 @@ export class UserService {
         This method returns all the IEmployee objects of an user
         @toUSE
     */
-   getUserEmployees(id:number):Promise<IEmployee[]>{
+//    getUserEmployees(id:number):Promise<IEmployee[]>{
        
-    //    for(let user of USERS){
-    //     if(user.id === id){
-    //         emp = user.employees
-    //     }
-    //    }
-        let url = `/api/user/emps/${id}`
+//     //    for(let user of USERS){
+//     //     if(user.id === id){
+//     //         emp = user.employees
+//     //     }
+//     //    }
+//         let url = `/api/user/emps/${id}`
 
-        return this.http.get(url).toPromise().then(response => {
-            console.log(response.json());
-            return response.json() as IEmployee[]
-        }).catch(this.handleError);
+//         return this.http.get(url).toPromise().then(response => {
+//             console.log(response.json());
+//             return response.json() as IEmployee[]
+//         }).catch(this.handleError);
                        
+//    }
+
+   getUserEmployees(id:number):IEmployee[] {
+       let emp:IEmployee[]
+       for(let user of USERS){
+           if(user.id === id){
+               emp = user.employees
+           }
+       }
+       return emp
    }
 
    addEmployeeToManager(id:number,empl:IEmployee){
